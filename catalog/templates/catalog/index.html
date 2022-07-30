@@ -11,5 +11,15 @@
 <p>On Loan: {{ num_instances_o }}</p>
 <p>Reserved: {{ num_instances_r }}</p>
 <p>Maintenance: {{ num_instances_m }}</p>
+
+{#?next={{ request.path }} bring you back to current url path#}
+
+{% if user.is_authenticated %}
+    <p>Welcome {{ user.get_username }}</p>
+    <a href="{% url 'logout' %}?next={{ request.path }}">Logout</a>
+{% else %}
+    <p>You Are Not Login</p>
+    <a href="{% url 'login' %}?next={{ request.path }}">Login</a>
+{% endif %}
 </body>
 </html>
